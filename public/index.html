@@ -8,12 +8,18 @@
     />
     <title>Cosmos | A minimalistic Ultraviolet frontend</title>
     <meta name="description" content="A minimalistic Ultraviolet frontend." />
-    <link rel="shortcut icon" content="favicon.ico" />
+    <link rel="shortcut icon" href="favicon.ico" />
     <link rel="stylesheet" href="style.css" />
     <link
       href="https://fonts.googleapis.com/css?family=Product+Sans"
       rel="stylesheet"
     />
+
+    <!-- Preload banners for faster paint -->
+    <link rel="preload" as="image" href="bannerLight.webp" media="(prefers-color-scheme: light)" />
+    <link rel="preload" as="image" href="bannerDark.webp" media="(prefers-color-scheme: dark)" />
+
+    <!-- Initial theme -->
     <script>
       (function () {
         const savedTheme = localStorage.getItem("theme");
@@ -22,6 +28,8 @@
         }
       })();
     </script>
+
+    <!-- Scripts -->
     <script src="baremux/index.js" defer></script>
     <script src="epoxy/index.js" defer></script>
     <script src="uv/uv.bundle.js" defer></script>
@@ -32,6 +40,7 @@
   </head>
 
   <body>
+    <!-- Theme toggle -->
     <div class="theme-toggle-container">
       <button
         id="theme-toggle"
@@ -41,9 +50,16 @@
         <span class="theme-icon">🌙</span>
       </button>
     </div>
+
+    <!-- Banner -->
     <div class="flex-center header-center dropIn unselectable">
       <img id="banner-img" src="" alt="Cosmos Banner" class="banner" />
     </div>
+
+    <!-- Tab bar (injected dynamically) -->
+    <div id="tab-bar"></div>
+
+    <!-- Address bar -->
     <form autocomplete="off" id="uv-form" class="flex-center blurOut">
       <input
         autocomplete="false"
@@ -58,12 +74,14 @@
         placeholder="Search without restrictions"
       />
     </form>
-    <p></p>
+
     <div class="center-margin">
       <p id="uv-error"></p>
       <pre id="uv-error-code"></pre>
     </div>
-    <div class="bottomText unselectable left">Cosmos v0.3.0</div>
+
+    <div class="bottomText unselectable left">Cosmos v0.3.1</div>
+
     <iframe id="uv-frame" title="Proxy Content Frame"></iframe>
   </body>
 </html>
