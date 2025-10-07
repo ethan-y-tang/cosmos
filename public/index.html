@@ -2,33 +2,56 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cosmos | A minimalistic Ultraviolet frontend</title>
-    <meta name="description" content="A minimalistic Ultraviolet frontend." />
     <link rel="shortcut icon" href="favicon.ico" />
     <link rel="stylesheet" href="style.css" />
-    <link
-      href="https://fonts.googleapis.com/css?family=Product+Sans"
-      rel="stylesheet"
-    />
 
-    <!-- Preload banners for faster paint -->
+    <!-- Preload banners -->
     <link rel="preload" as="image" href="bannerLight.webp" media="(prefers-color-scheme: light)" />
     <link rel="preload" as="image" href="bannerDark.webp" media="(prefers-color-scheme: dark)" />
 
     <script>
       (function () {
-        const savedTheme = localStorage.getItem("theme");
-        if (savedTheme === "dark") {
-          document.documentElement.classList.add("dark-theme");
-        }
+        if (localStorage.getItem("theme") === "dark") document.documentElement.classList.add("dark-theme");
       })();
     </script>
+  </head>
 
-    <!-- Scripts -->
+  <body>
+    <!-- Theme toggle -->
+    <div class="theme-toggle-container">
+      <button id="theme-toggle" class="theme-toggle-btn unselectable" aria-label="Toggle theme">
+        <span class="theme-icon">🌙</span>
+      </button>
+    </div>
+
+    <!-- Banner/Home -->
+    <div id="home" class="home flex-center">
+      <img id="banner-img" src="" alt="Cosmos Banner" class="banner" />
+      <button id="start-btn" class="start-btn">Start Searching</button>
+    </div>
+
+    <!-- Tab bar -->
+    <div id="tab-bar" class="tab-bar"></div>
+
+    <!-- Address bar -->
+    <div id="address-bar" class="address-bar">
+      <input type="text" id="uv-address" placeholder="Search or enter URL" />
+      <button id="go-btn">Go</button>
+    </div>
+
+    <!-- Error messages -->
+    <div class="center-margin">
+      <p id="uv-error"></p>
+      <pre id="uv-error-code"></pre>
+    </div>
+
+    <!-- Tab content -->
+    <div id="tab-content" class="tab-content"></div>
+
+    <div class="bottomText unselectable left">Cosmos v0.4.1</div>
+
     <script src="baremux/index.js" defer></script>
     <script src="epoxy/index.js" defer></script>
     <script src="uv/uv.bundle.js" defer></script>
@@ -36,52 +59,5 @@
     <script src="register-sw.js" defer></script>
     <script src="search.js" defer></script>
     <script src="index.js" defer></script>
-  </head>
-
-  <body>
-    <!-- Theme toggle -->
-    <div class="theme-toggle-container">
-      <button
-        id="theme-toggle"
-        class="theme-toggle-btn unselectable"
-        aria-label="Toggle theme"
-      >
-        <span class="theme-icon">🌙</span>
-      </button>
-    </div>
-
-    <!-- Banner -->
-    <div class="flex-center header-center dropIn unselectable" id="home-banner">
-      <img id="banner-img" src="" alt="Cosmos Banner" class="banner" />
-      <button id="start-btn" class="start-btn">Start Searching</button>
-    </div>
-
-    <!-- Tab bar -->
-    <div id="tab-bar"></div>
-
-    <!-- Address bar -->
-    <form autocomplete="off" id="uv-form" class="flex-center blurOut">
-      <input
-        autocomplete="false"
-        id="uv-search-engine"
-        value="https://www.google.com/search?q=%s"
-        type="hidden"
-      />
-      <input
-        autocomplete="false"
-        id="uv-address"
-        type="text"
-        placeholder="Search without restrictions"
-      />
-    </form>
-
-    <div class="center-margin">
-      <p id="uv-error"></p>
-      <pre id="uv-error-code"></pre>
-    </div>
-
-    <div class="bottomText unselectable left">Cosmos v0.4.0</div>
-
-    <iframe id="uv-frame" title="Proxy Content Frame"></iframe>
   </body>
 </html>
