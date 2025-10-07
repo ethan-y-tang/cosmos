@@ -19,7 +19,6 @@
     <link rel="preload" as="image" href="bannerLight.webp" media="(prefers-color-scheme: light)" />
     <link rel="preload" as="image" href="bannerDark.webp" media="(prefers-color-scheme: dark)" />
 
-    <!-- Initial theme -->
     <script>
       (function () {
         const savedTheme = localStorage.getItem("theme");
@@ -52,11 +51,12 @@
     </div>
 
     <!-- Banner -->
-    <div class="flex-center header-center dropIn unselectable">
+    <div class="flex-center header-center dropIn unselectable" id="home-banner">
       <img id="banner-img" src="" alt="Cosmos Banner" class="banner" />
+      <button id="start-btn" class="start-btn">Start Searching</button>
     </div>
 
-    <!-- Tab bar (injected dynamically) -->
+    <!-- Tab bar -->
     <div id="tab-bar"></div>
 
     <!-- Address bar -->
@@ -80,7 +80,7 @@
       <pre id="uv-error-code"></pre>
     </div>
 
-    <div class="bottomText unselectable left">Cosmos v0.3.1</div>
+    <div class="bottomText unselectable left">Cosmos v0.4.0</div>
 
     <iframe id="uv-frame" title="Proxy Content Frame"></iframe>
   </body>
